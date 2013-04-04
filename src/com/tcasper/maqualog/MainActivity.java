@@ -1,6 +1,9 @@
 package com.tcasper.maqualog;
 
-import com.tcasper.maqualog.adapter.AppSectionsPagerAdapter;
+import java.util.ArrayList;
+
+import com.tcasper.maqualog.adapter.ParametersPagerAdapter;
+import com.tcasper.maqualog.util.MaquaLogConstants;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
@@ -12,19 +15,18 @@ import android.view.Menu;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	
-	private AppSectionsPagerAdapter appSectionsPagerAdapter;
+	private ParametersPagerAdapter appSectionsPagerAdapter;
 	private ViewPager viewPager;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
     	Log.d("MainActivity", "Entering onCreate!");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);  
+        setContentView(R.layout.activity_main);
         
-        appSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
+        appSectionsPagerAdapter = new ParametersPagerAdapter(getSupportFragmentManager());
         
         final ActionBar actionBar = getActionBar();
-        
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         
@@ -38,8 +40,17 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         	}
         });
         
-        for(int i = 0; i < appSectionsPagerAdapter.getCount(); i++) {
-        	actionBar.addTab(actionBar.newTab().setText(appSectionsPagerAdapter.getPageTitle(i)).setTabListener(this));
+        ArrayList<String> testNames = new ArrayList<String>();
+        testNames.add(MaquaLogConstants.AMMONIA);
+        testNames.add(MaquaLogConstants.NITRITE);
+        testNames.add(MaquaLogConstants.NITRATE);
+        testNames.add(MaquaLogConstants.PHOSPHATE);
+        testNames.add(MaquaLogConstants.ALKILINITY);
+        testNames.add(MaquaLogConstants.CALCIUM);
+        testNames.add(MaquaLogConstants.MAGNESIUM);
+        testNames.add(MaquaLogConstants.IODINE);
+        for(int i = 0; i < testNames.size(); i++) {
+        	actionBar.addTab(actionBar.newTab().setText(testNames.get(i)).setTabListener(this));
         }
         
     }

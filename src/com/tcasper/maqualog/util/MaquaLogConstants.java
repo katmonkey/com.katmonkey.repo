@@ -10,5 +10,6 @@ public class MaquaLogConstants {
 	public static final String MAGNESIUM = "magnesium";
 	public static final String ALKILINITY = "alkilinity";
 	public static final String IODINE = "iodine";
+	
 
 }

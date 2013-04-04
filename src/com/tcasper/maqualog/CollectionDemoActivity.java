@@ -46,7 +46,7 @@ public class CollectionDemoActivity extends FragmentActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         // Set up the ViewPager, attaching the adapter.
-        viewPager = (ViewPager)findViewById(R.id.pager);
+        viewPager = (ViewPager)findViewById(R.id.col_pager);
         viewPager.setAdapter(demoCollectionPagerAdapter);
     }
 

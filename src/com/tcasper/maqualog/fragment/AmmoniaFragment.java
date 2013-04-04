@@ -8,11 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class AmmoniaFragment extends Fragment {
 	
 	public static final String ARG_OBJECT = "object";
+	public static final String ARG_SECTION_NUMBER = "section_number";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

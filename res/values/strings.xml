@@ -12,6 +12,7 @@
     <string name="ph">pH</string>
     <string name="magnesium">Magnesium</string>
     <string name="calcium">Calcium</string>
+    <string name="iodine">Iodine</string>
     <string name="ppm">ppm</string>
     
     <string name="dummy_section_text">Section %1d is just a dummy section.</string>
