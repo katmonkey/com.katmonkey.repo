@@ -12,10 +12,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	
-	private ParametersPagerAdapter appSectionsPagerAdapter;
+	private ParametersPagerAdapter parametersPagerAdapter;
 	private ViewPager viewPager;
 	
     @Override
@@ -24,14 +26,14 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
-        appSectionsPagerAdapter = new ParametersPagerAdapter(getSupportFragmentManager());
+        parametersPagerAdapter = new ParametersPagerAdapter(getSupportFragmentManager());
         
         final ActionBar actionBar = getActionBar();
         actionBar.setHomeButtonEnabled(false);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         
         viewPager = (ViewPager)findViewById(R.id.pager);
-        viewPager.setAdapter(appSectionsPagerAdapter);
+        viewPager.setAdapter(parametersPagerAdapter);
         viewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
         	
         	@Override
@@ -40,19 +42,10 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         	}
         });
         
-        ArrayList<String> testNames = new ArrayList<String>();
-        testNames.add(MaquaLogConstants.AMMONIA);
-        testNames.add(MaquaLogConstants.NITRITE);
-        testNames.add(MaquaLogConstants.NITRATE);
-        testNames.add(MaquaLogConstants.PHOSPHATE);
-        testNames.add(MaquaLogConstants.ALKILINITY);
-        testNames.add(MaquaLogConstants.CALCIUM);
-        testNames.add(MaquaLogConstants.MAGNESIUM);
-        testNames.add(MaquaLogConstants.IODINE);
-        for(int i = 0; i < testNames.size(); i++) {
-        	actionBar.addTab(actionBar.newTab().setText(testNames.get(i)).setTabListener(this));
-        }
-        
+        ArrayList<String> testNames = getTestNames();
+        for(String testName : testNames) {
+        	actionBar.addTab(actionBar.newTab().setText(testName).setTabListener(this));
+        }    
     }
     
     @Override
@@ -72,5 +65,18 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
+    }
+    
+    private ArrayList<String> getTestNames() {
+    	ArrayList<String> testNames = new ArrayList<String>();
+    	testNames.add(MaquaLogConstants.AMMONIA);
+        testNames.add(MaquaLogConstants.NITRITE);
+        testNames.add(MaquaLogConstants.NITRATE);
+        testNames.add(MaquaLogConstants.PHOSPHATE);
+        testNames.add(MaquaLogConstants.ALKILINITY);
+        testNames.add(MaquaLogConstants.CALCIUM);
+        testNames.add(MaquaLogConstants.MAGNESIUM);
+        testNames.add(MaquaLogConstants.IODINE);
+        return testNames;
     }
 }
