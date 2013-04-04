@@ -18,7 +18,7 @@ public class CollectionDemoActivity extends FragmentActivity {
      * each object in a collection. We use a {@link android.support.v4.app.FragmentStatePagerAdapter}
      * derivative, which will destroy and re-create fragments as needed, saving and restoring their
      * state in the process. This is important to conserve memory and is a best practice when
-     * allowing navigation between objects in a potentially large collection...
+     * allowing navigation between objects in a potentially large collection....
      */
     DemoCollectionPagerAdapter demoCollectionPagerAdapter;
 
