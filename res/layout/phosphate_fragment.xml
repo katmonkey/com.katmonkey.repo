@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <android.support.v4.view.ViewPager
+    	android:id="@+android:id/viewpager"
+    	android:layout_width="fill_parent"
+   		android:layout_height="fill_parent" />
+
+    <ImageView
+        android:contentDescription="@string/phosphate"
+        android:id="@+id/phosphateLabelImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="17dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/phosphate_label" />
+    
+    <TextView
+        android:id="@+id/phosphateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/phosphateLabelImageView"
+        android:layout_toLeftOf="@+id/phosphateLabelImageView"
+        android:text="@string/phosphate"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="@dimen/thirty_six" />
+    
+    <EditText
+        android:inputType="numberDecimal"
+        android:id="@+id/phosphateEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/phosphateTextView"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="47dp"
+        android:ems="10" >
+    
+		<requestFocus />
+	</EditText>
+	
+    <TextView
+        android:id="@+id/ppmTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/phosphateEditText"
+        android:layout_toRightOf="@+id/phosphateEditText"
+        android:text="@string/ppm"
+        android:textSize="@dimen/eighteen" />
+    
+    <Button
+        android:id="@+id/phosphateSubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/phosphateTextView"
+        android:text="enter" />
+    
+</RelativeLayout>
