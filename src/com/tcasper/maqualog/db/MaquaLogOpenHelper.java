@@ -13,32 +13,33 @@ import android.util.Log;
 
 public class MaquaLogOpenHelper extends SQLiteOpenHelper {
 	
-	final static int DB_VERSION = 3;
-	final static String DB_NAME = "mqlog.s3db";
-	Context context;
+	private final static int DB_VERSION = 4;
+	private final static String DB_NAME = "mqlog.s3db";
+	private static MaquaLogOpenHelper dbHelperInstance = null;
+	private Context context;
 
-	public MaquaLogOpenHelper(Context context) {
+	private MaquaLogOpenHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
 		Log.d("MaquaLogOpenHelper", "Entering MaquaLogOpenHelper");
 		this.context = context;
-		
-		
+	}
+	
+	public static MaquaLogOpenHelper getInstance(Context context) {
+		if(dbHelperInstance == null) {
+			dbHelperInstance = new MaquaLogOpenHelper(context.getApplicationContext());
+		}
+		return dbHelperInstance;
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		Log.d("MaquaLogOpenHelper", "Entering onCreate!");
-		executeSQLScript(db, "mqCreate.sql");
+		executeSQLScript(db, "mqCreateSql.sql");
 		Log.d("MaquaLogOpenHelper", "Created the DB!");
-	}
-
-	@Override
-	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		
 	}
 	
 	private void executeSQLScript(SQLiteDatabase db, String dbName) {
-		Log.d("MaquaLogOpenHelper", "Entering executeSQLScript!");
+		Log.d("MaquaLogOpenHelper", "********Entering executeSQLScript!");
 		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
 		int len;
@@ -63,6 +64,12 @@ public class MaquaLogOpenHelper extends SQLiteOpenHelper {
 		} catch(SQLException se) {
 			se.printStackTrace();
 		}
+	}
+
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	
