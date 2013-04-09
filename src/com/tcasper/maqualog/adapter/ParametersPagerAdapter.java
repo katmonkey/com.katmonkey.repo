@@ -4,7 +4,6 @@ import com.tcasper.maqualog.fragment.AlkilinityFragment;
 import com.tcasper.maqualog.fragment.AmmoniaFragment;
 import com.tcasper.maqualog.fragment.CalciumFragment;
 import com.tcasper.maqualog.fragment.IodineFragment;
-import com.tcasper.maqualog.fragment.LaunchpadSectionFragment;
 import com.tcasper.maqualog.fragment.MagnesiumFragment;
 import com.tcasper.maqualog.fragment.NitrateFragment;
 import com.tcasper.maqualog.fragment.NitriteFragment;
