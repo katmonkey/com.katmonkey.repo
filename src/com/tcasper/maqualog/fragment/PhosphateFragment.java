@@ -47,7 +47,7 @@ public class PhosphateFragment extends Fragment {
 				DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
 				String phosphateVal = phosphateEditText.getText().toString();
 				ContentValues vals = new ContentValues();
-				vals.put("phosphate", phosphateVal);
+				vals.put("value", phosphateVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();

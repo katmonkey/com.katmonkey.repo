@@ -47,7 +47,7 @@ public class AlkilinityFragment extends Fragment {
 				DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
 				String alkilinityVal = alkilinityEditText.getText().toString();
 				ContentValues vals = new ContentValues();
-				vals.put("alkilinity", alkilinityVal);
+				vals.put("value", alkilinityVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();

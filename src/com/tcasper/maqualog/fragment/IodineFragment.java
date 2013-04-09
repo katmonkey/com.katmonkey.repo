@@ -47,7 +47,7 @@ public class IodineFragment extends Fragment {
 				DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
 				String iodineVal = iodineEditText.getText().toString();
 				ContentValues vals = new ContentValues();
-				vals.put("iodine", iodineVal);
+				vals.put("value", iodineVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();

@@ -45,7 +45,7 @@ public class NitriteFragment extends Fragment {
 				DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
 				String nitriteVal = nitriteEditText.getText().toString();
 				ContentValues vals = new ContentValues();
-				vals.put("nitrite", nitriteVal);
+				vals.put("value", nitriteVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();

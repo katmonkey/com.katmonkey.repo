@@ -47,7 +47,7 @@ public class MagnesiumFragment extends Fragment {
 				DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
 				String magnesiumVal = magnesiumEditText.getText().toString();
 				ContentValues vals = new ContentValues();
-				vals.put("magnesium", magnesiumVal);
+				vals.put("value", magnesiumVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();

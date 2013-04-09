@@ -44,7 +44,7 @@ public class AmmoniaFragment extends Fragment {
 				DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
 				String ammoniaVal = ammoniaEditText.getText().toString();
 				ContentValues vals = new ContentValues();
-				vals.put("ammonia", ammoniaVal);
+				vals.put("value", ammoniaVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();

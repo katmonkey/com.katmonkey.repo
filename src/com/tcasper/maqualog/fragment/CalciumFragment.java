@@ -47,7 +47,7 @@ public class CalciumFragment extends Fragment {
 				DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
 				String calciumVal = calciumEditText.getText().toString();
 				ContentValues vals = new ContentValues();
-				vals.put("calcium", calciumVal);
+				vals.put("value", calciumVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();
