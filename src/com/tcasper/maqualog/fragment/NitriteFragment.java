@@ -22,6 +22,8 @@ import android.widget.RelativeLayout;
 
 public class NitriteFragment extends Fragment {
 	
+	public static final String TAG = "Nitrite";
+	
 	public static final String ARG_SECTION_NUMBER = "section_number";
 
 	Button nitriteSubmitButton;
@@ -39,20 +41,17 @@ public class NitriteFragment extends Fragment {
 		nitriteSubmitButton.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
-				Log.d("NitriteFragment", "Button clicked!!!");
+				Log.d(TAG, "Button clicked!!!");
 				DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
-				String editTextValue = nitriteEditText.getText().toString();
+				String nitriteVal = nitriteEditText.getText().toString();
 				ContentValues vals = new ContentValues();
-				vals.put("nitrite", editTextValue);
+				vals.put("nitrite", nitriteVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();
-				//dbHelper.close();
-				db.insert("test_entries", "", vals);
+				db.insert("nitrite", "", vals);
 			}
 		});
-		
-		
 		return (RelativeLayout)nitriteView;
 	}
 

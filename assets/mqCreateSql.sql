@@ -7,7 +7,7 @@ nitrate REAL,
 phosphate REAL,
 alkilinity REAL,
 calcium REAL,
-magnesium REAL)
+magnesium REAL);
 
 CREATE TABLE ammonia (
 	_id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 
 public class NitrateFragment extends Fragment {
 	
+	private static final String TAG = "NitrateFragment";
 	public static final String ARG_SECTION_NUMBER = "section_number";
 
 	Button nitrateSubmitButton;
@@ -39,16 +40,15 @@ public class NitrateFragment extends Fragment {
 		nitrateSubmitButton.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
-				Log.d("NitrateFragment", "Button clicked!!!");
+				Log.d(TAG, "Button clicked!!!");
 				DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
-				String editTextValue = nitrateEditText.getText().toString();
+				String nitrateVal = nitrateEditText.getText().toString();
 				ContentValues vals = new ContentValues();
-				vals.put("nitrate", editTextValue);
+				vals.put("nitrate", nitrateVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();
-				//dbHelper.close();
-				db.insert("test_entries", "", vals);
+				db.insert("nitrate", "", vals);
 			}
 		});
 

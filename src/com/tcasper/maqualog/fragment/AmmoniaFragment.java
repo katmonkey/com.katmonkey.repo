@@ -22,6 +22,7 @@ import android.widget.RelativeLayout;
 
 public class AmmoniaFragment extends Fragment {
 	
+	public static final String TAG = "AmmoniaFragment";
 	public static final String ARG_OBJECT = "object";
 	public static final String ARG_SECTION_NUMBER = "section_number";
 	Button ammoniaSubmitButton;
@@ -39,20 +40,17 @@ public class AmmoniaFragment extends Fragment {
 		ammoniaSubmitButton.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
-				Log.d("AmmoniaFragment", "Button clicked!!!");
+				Log.d(TAG, "Button clicked!!!");
 				DateFormat sdf = SimpleDateFormat.getDateTimeInstance();
-				String editTextValue = ammoniaEditText.getText().toString();
+				String ammoniaVal = ammoniaEditText.getText().toString();
 				ContentValues vals = new ContentValues();
-				vals.put("ammonia", editTextValue);
+				vals.put("ammonia", ammoniaVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();
-				//dbHelper.close();
-				db.insert("test_entries", "", vals);
+				db.insert("ammonia", "", vals);
 			}
 		});
-		
-		
 		return (RelativeLayout)ammoniaView;
 	}
 }
