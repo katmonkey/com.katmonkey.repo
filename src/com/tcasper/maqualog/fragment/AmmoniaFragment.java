@@ -8,14 +8,17 @@ import com.tcasper.maqualog.R;
 import com.tcasper.maqualog.db.MaquaLogOpenHelper;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -28,12 +31,15 @@ public class AmmoniaFragment extends Fragment {
 	Button ammoniaSubmitButton;
 	EditText ammoniaEditText;
 	MaquaLogOpenHelper dbHelper;
+	InputMethodManager imm = null;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if(container == null) {
 			return null;
 		}
+		
+		
 		View ammoniaView = inflater.inflate(R.layout.ammonia_fragment, container, false);
 		ammoniaSubmitButton = (Button)ammoniaView.findViewById(R.id.ammoniaSubmitButton);
 		ammoniaEditText = (EditText)ammoniaView.findViewById(R.id.ammoniaEditText);
@@ -49,8 +55,13 @@ public class AmmoniaFragment extends Fragment {
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();
 				db.insert("ammonia", "", vals);
+				
+				ammoniaEditText.setText("");
+				imm = (InputMethodManager)getActivity().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(ammoniaSubmitButton.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+				db.close();
 			}
 		});
-		return (RelativeLayout)ammoniaView;
+		return ammoniaView;
 	}
 }

@@ -8,6 +8,7 @@ import com.tcasper.maqualog.R;
 import com.tcasper.maqualog.db.MaquaLogOpenHelper;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
@@ -28,6 +30,7 @@ public class NitrateFragment extends Fragment {
 	Button nitrateSubmitButton;
 	EditText nitrateEditText;
 	MaquaLogOpenHelper dbHelper;
+	InputMethodManager imm = null;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +52,11 @@ public class NitrateFragment extends Fragment {
 				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				SQLiteDatabase db = dbHelper.getWritableDatabase();
 				db.insert("nitrate", "", vals);
+				
+				nitrateEditText.setText("");
+				imm = (InputMethodManager)getActivity().getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+				imm.hideSoftInputFromWindow(nitrateSubmitButton.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+				db.close();
 			}
 		});
 
