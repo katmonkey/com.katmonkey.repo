@@ -31,20 +31,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="@dimen/thirty_six" />
 
-    <EditText
-        android:inputType="numberDecimal"
-        android:id="@+id/iodineEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/iodineTextView"
-        android:layout_marginLeft="27dp"
-        android:layout_marginTop="47dp"
-        android:ems="10" >
-
-        <requestFocus />
-    </EditText>
-
     <TextView
         android:id="@+id/ppmTextView"
         android:layout_width="wrap_content"
@@ -54,12 +40,23 @@
         android:text="@string/ppm"
         android:textSize="@dimen/eighteen" />
 
+    <EditText
+        android:id="@+id/iodineEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iodineTextView"
+        android:layout_marginTop="23dp"
+        android:layout_toLeftOf="@+id/iodineTextView"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:width="50dip" />
+
     <Button
         android:id="@+id/iodineSubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/iodineTextView"
+        android:layout_alignBottom="@+id/ppmTextView"
+        android:layout_toRightOf="@+id/ppmTextView"
         android:text="enter" />
     
 </RelativeLayout>
