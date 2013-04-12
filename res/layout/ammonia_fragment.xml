@@ -60,16 +60,19 @@
         android:text="@string/enter" />
 
     <TableLayout
+        android:id="@+id/ammoniaTable"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ammoniaSubmitButton"
-        android:padding="10dip" >
+        android:padding="10dip"
+        android:stretchColumns="1,2" >
 
         <TableRow
             android:id="@+id/ammoniaHistoryTableHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-			android:padding="15dip">
+			android:padding="15dip"
+			android:stretchColumns="1,2">
             <TextView 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" 
