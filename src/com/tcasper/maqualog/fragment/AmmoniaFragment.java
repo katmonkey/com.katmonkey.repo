@@ -9,11 +9,13 @@ import com.tcasper.maqualog.db.MaquaLogOpenHelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -36,7 +39,9 @@ public class AmmoniaFragment extends Fragment {
 	Button ammoniaSubmitButton;
 	EditText ammoniaEditText;
 	MaquaLogOpenHelper dbHelper;
+	SQLiteDatabase db;
 	InputMethodManager imm = null;
+	ListView ammoniaHistoryList;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,10 +49,25 @@ public class AmmoniaFragment extends Fragment {
 			return null;
 		}
 		
-		
+		dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
+		db = dbHelper.getWritableDatabase();
 		View ammoniaView = inflater.inflate(R.layout.ammonia_fragment, container, false);
 		ammoniaSubmitButton = (Button)ammoniaView.findViewById(R.id.ammoniaSubmitButton);
 		ammoniaEditText = (EditText)ammoniaView.findViewById(R.id.ammoniaEditText);
+		ammoniaHistoryList = (ListView)ammoniaView.findViewById(R.id.ammoniaList);
+		String[] fromColumns = {"date", "value"};
+		int[] toViews = {R.id.dateView, R.id.valueView};
+		
+		//Grab the past values from the DB
+		Cursor cursor = db.query("ammonia", null, null, null, null, null, "date asc", null);
+		SimpleCursorAdapter cAdapter = new SimpleCursorAdapter(getActivity().getApplicationContext(), 
+				R.layout.ammonia_fragment, cursor, fromColumns, toViews);
+		Log.d(TAG, "Queried the DB, Cursor size is " + cursor.getCount());
+		while(cursor.moveToNext()) {
+			//addHistoryRow(cursor.getString(cursor.getColumnIndex("date")), cursor.getString(cursor.getColumnIndex("value")));
+		}
+		
+		
 		ammoniaSubmitButton.setOnClickListener(new OnClickListener() {
 			
 			public void onClick(View v) {
@@ -57,8 +77,8 @@ public class AmmoniaFragment extends Fragment {
 				ContentValues vals = new ContentValues();
 				vals.put("value", ammoniaVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
-				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
-				SQLiteDatabase db = dbHelper.getWritableDatabase();
+				
+				
 				db.insert("ammonia", "", vals);
 				
 				ammoniaEditText.setText("");
@@ -71,13 +91,13 @@ public class AmmoniaFragment extends Fragment {
 	}
 	
 	
-	
-	private void addHistoryRow(View v) {
+	/*
+	private void addHistoryRow(String dateStr, String valueStr) {
 		LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View ammoniaView = inflater.inflate(R.layout.ammonia_fragment, null);
 		TableLayout ammoniaTableLayout = (TableLayout)ammoniaView.findViewById(R.id.ammoniaTable);
   	  	TableRow ammoniaTableRow = new TableRow(getActivity().getApplicationContext());
-  	  	LayoutParams ammoniaLayoutParams = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+  	  	TableLayout.LayoutParams ammoniaLayoutParams = new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
   	  	ammoniaTableRow.setLayoutParams(ammoniaLayoutParams);
 
   	  	TextView date = new TextView(getActivity().getApplicationContext());
@@ -85,14 +105,14 @@ public class AmmoniaFragment extends Fragment {
   	  	date.setLayoutParams(ammoniaLayoutParams);
   	  	value.setLayoutParams(ammoniaLayoutParams);
   	  	
-  	  	date.setBackgroundColor(Color.WHITE);
-  	  	value.setBackgroundColor(Color.WHITE);
-  	  	date.setText(""/* Get this value from DB */);
-  	  	value.setText(""/* Get this value from DB */);
+  	  	date.setBackgroundColor(Color.BLUE);
+  	  	value.setBackgroundColor(Color.BLUE);
+  	  	date.setText(dateStr);
+  	  	value.setText(valueStr);
 
   	  	ammoniaTableRow.addView(date);
   	  	ammoniaTableRow.addView(value);
 
-  	  	ammoniaTableLayout.addView(ammoniaTableRow, new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-	}
+  	  	ammoniaTableLayout.addView(ammoniaTableRow, ammoniaLayoutParams);
+	}*/
 }
