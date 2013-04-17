@@ -54,14 +54,9 @@ public class AmmoniaFragment extends Fragment {
 		View ammoniaView = inflater.inflate(R.layout.ammonia_fragment, container, false);
 		ammoniaSubmitButton = (Button)ammoniaView.findViewById(R.id.ammoniaSubmitButton);
 		ammoniaEditText = (EditText)ammoniaView.findViewById(R.id.ammoniaEditText);
-		ammoniaHistoryList = (ListView)ammoniaView.findViewById(R.id.ammoniaList);
-		String[] fromColumns = {"date", "value"};
-		int[] toViews = {R.id.dateView, R.id.valueView};
 		
 		//Grab the past values from the DB
 		Cursor cursor = db.query("ammonia", null, null, null, null, null, "date asc", null);
-		SimpleCursorAdapter cAdapter = new SimpleCursorAdapter(getActivity().getApplicationContext(), 
-				R.layout.ammonia_fragment, cursor, fromColumns, toViews);
 		Log.d(TAG, "Queried the DB, Cursor size is " + cursor.getCount());
 		while(cursor.moveToNext()) {
 			//addHistoryRow(cursor.getString(cursor.getColumnIndex("date")), cursor.getString(cursor.getColumnIndex("value")));

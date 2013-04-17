@@ -79,31 +79,5 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         testNames.add(MaquaLogConstants.IODINE);
         return testNames;
     }
-    /*
-    public void createTableRow(View v) {
-    	  TableLayout tl = (TableLayout) findViewById(R.id.spreadsheet);
-    	  TableRow tr = new TableRow(this);
-    	  LayoutParams lp = new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
-    	  tr.setLayoutParams(lp);
-
-    	  TextView tvLeft = new TextView(this);
-    	  tvLeft.setLayoutParams(lp);
-    	  tvLeft.setBackgroundColor(Color.WHITE);
-    	  tvLeft.setText("OMG");
-    	  TextView tvCenter = new TextView(this);
-    	  tvCenter.setLayoutParams(lp);
-    	  tvCenter.setBackgroundColor(Color.WHITE);
-    	  tvCenter.setText("It");
-    	  TextView tvRight = new TextView(this);
-    	  tvRight.setLayoutParams(lp);
-    	  tvRight.setBackgroundColor(Color.WHITE);
-    	  tvRight.setText("WORKED!!!");
-
-    	  tr.addView(tvLeft);
-    	  tr.addView(tvCenter);
-    	  tr.addView(tvRight);
-
-    	  tl.addView(tr, new TableLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT));
-    	}
-    	*/
+    
 }

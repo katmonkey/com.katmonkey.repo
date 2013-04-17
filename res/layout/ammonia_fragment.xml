@@ -58,23 +58,5 @@
         android:layout_alignBottom="@+id/ppmTextView"
         android:layout_toRightOf="@+id/ppmTextView"
         android:text="@string/enter" />
-
-    <ListView
-        android:id="@+id/ammoniaList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ammoniaSubmitButton"
-        android:padding="10dip">
-    </ListView>
-    <TextView
-        android:id="@+id/dateView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/eighteen" />
-    <TextView
-        android:id="@+id/valueView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/eighteen" />
     
 </RelativeLayout>
