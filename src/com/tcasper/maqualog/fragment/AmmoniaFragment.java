@@ -84,30 +84,4 @@ public class AmmoniaFragment extends Fragment {
 		});
 		return ammoniaView;
 	}
-	
-	
-	/*
-	private void addHistoryRow(String dateStr, String valueStr) {
-		LayoutInflater inflater = (LayoutInflater)getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View ammoniaView = inflater.inflate(R.layout.ammonia_fragment, null);
-		TableLayout ammoniaTableLayout = (TableLayout)ammoniaView.findViewById(R.id.ammoniaTable);
-  	  	TableRow ammoniaTableRow = new TableRow(getActivity().getApplicationContext());
-  	  	TableLayout.LayoutParams ammoniaLayoutParams = new TableLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-  	  	ammoniaTableRow.setLayoutParams(ammoniaLayoutParams);
-
-  	  	TextView date = new TextView(getActivity().getApplicationContext());
-  	  	TextView value = new TextView(getActivity().getApplicationContext());
-  	  	date.setLayoutParams(ammoniaLayoutParams);
-  	  	value.setLayoutParams(ammoniaLayoutParams);
-  	  	
-  	  	date.setBackgroundColor(Color.BLUE);
-  	  	value.setBackgroundColor(Color.BLUE);
-  	  	date.setText(dateStr);
-  	  	value.setText(valueStr);
-
-  	  	ammoniaTableRow.addView(date);
-  	  	ammoniaTableRow.addView(value);
-
-  	  	ammoniaTableLayout.addView(ammoniaTableRow, ammoniaLayoutParams);
-	}*/
 }

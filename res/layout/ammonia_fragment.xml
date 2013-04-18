@@ -58,5 +58,10 @@
         android:layout_alignBottom="@+id/ppmTextView"
         android:layout_toRightOf="@+id/ppmTextView"
         android:text="@string/enter" />
+    <ListView
+        android:id="@+id/ammoniaHistoryListView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ammoniaSubmitButton" />
     
 </RelativeLayout>

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.res.AssetManager;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,15 +15,20 @@ import android.util.Log;
 
 public class MaquaLogOpenHelper extends SQLiteOpenHelper {
 	
+	private static final String TAG = "MaquaLogOpenHelper";
 	private final static int DB_VERSION = 4;
 	private final static String DB_NAME = "mqlog.s3db";
 	private static MaquaLogOpenHelper dbHelperInstance = null;
+	private static SharedPreferences firstTimeSp;
+	private static final String FIRST_TIME_DB = "first_time_db";
 	private Context context;
 
 	private MaquaLogOpenHelper(Context context) {
 		super(context, DB_NAME, null, DB_VERSION);
-		Log.d("MaquaLogOpenHelper", "Entering MaquaLogOpenHelper");
+		Log.d(TAG, "MaquaLogOpenHelper constructor");
 		this.context = context;
+		firstTimeSp = this.context.getSharedPreferences(FIRST_TIME_DB, Context.MODE_PRIVATE);
+		
 	}
 	
 	public static MaquaLogOpenHelper getInstance(Context context) {
@@ -33,13 +40,23 @@ public class MaquaLogOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		Log.d("MaquaLogOpenHelper", "Entering onCreate!");
-		executeSQLScript(db, "mqCreateSql.sql");
-		Log.d("MaquaLogOpenHelper", "Created the DB!");
+		Log.d(TAG, "Entering onCreate!");
+		boolean firstTime = firstTimeSp.getBoolean("firstTime", true);
+		if(firstTime) {
+			Log.d(TAG, "This user's first time in the application!");
+			//Execute our SQL to build the DB, show splash, activity, etc
+			executeSQLScript(db, "mqCreateSql.sql");
+			Editor editor = firstTimeSp.edit();
+			editor.putBoolean("firstTime", true);
+			editor.commit();
+		} else {
+			Log.d(TAG, "Not this user's first time in this application!");
+		}
+		Log.d(TAG, "Created the DB!");
 	}
 	
 	private void executeSQLScript(SQLiteDatabase db, String dbName) {
-		Log.d("MaquaLogOpenHelper", "********Entering executeSQLScript!");
+		Log.d(TAG, "********Entering executeSQLScript!");
 		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
 		byte[] buffer = new byte[1024];
 		int len;
@@ -68,7 +85,6 @@ public class MaquaLogOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
 		
 	}
 	
