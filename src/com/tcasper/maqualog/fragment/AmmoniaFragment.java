@@ -13,9 +13,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.widget.SimpleCursorAdapter;
+import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,9 +59,11 @@ public class AmmoniaFragment extends Fragment {
 		//Grab the past values from the DB
 		Cursor cursor = db.query("ammonia", null, null, null, null, null, "date asc", null);
 		Log.d(TAG, "Queried the DB, Cursor size is " + cursor.getCount());
-		while(cursor.moveToNext()) {
-			//addHistoryRow(cursor.getString(cursor.getColumnIndex("date")), cursor.getString(cursor.getColumnIndex("value")));
-		}
+		
+		if (getFragmentManager().findFragmentById(R.id.ammoniaHistoryListView) == null) {
+			ListFragment list = new ListFragment();
+            getActivity().getSupportFragmentManager().beginTransaction().add(R.id.ammoniaHistoryListView, list).commit();
+        }
 		
 		
 		ammoniaSubmitButton.setOnClickListener(new OnClickListener() {
