@@ -33,6 +33,14 @@ public class NitriteFragment extends Fragment {
 	MaquaLogOpenHelper dbHelper;
 	InputMethodManager imm = null;
 	
+	public static NitriteFragment newInstance(int index) {
+		NitriteFragment af = new NitriteFragment();
+		Bundle args = new Bundle();
+		args.putInt(ARG_SECTION_NUMBER, index);
+		af.setArguments(args);
+		return af;
+	}
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		if(container == null) {
@@ -50,8 +58,7 @@ public class NitriteFragment extends Fragment {
 				ContentValues vals = new ContentValues();
 				vals.put("value", nitriteVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
-				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
-				SQLiteDatabase db = dbHelper.getWritableDatabase();
+				SQLiteDatabase db = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				db.insert("nitrite", "", vals);
 				
 				nitriteEditText.setText("");

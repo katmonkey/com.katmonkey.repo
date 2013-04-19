@@ -32,6 +32,14 @@ public class CalciumFragment extends Fragment {
 	EditText calciumEditText;
 	MaquaLogOpenHelper dbHelper;
 	InputMethodManager imm = null;
+	
+	public static CalciumFragment newInstance(int index) {
+		CalciumFragment af = new CalciumFragment();
+		Bundle args = new Bundle();
+		args.putInt(ARG_SECTION_NUMBER, index);
+		af.setArguments(args);
+		return af;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,8 +60,7 @@ public class CalciumFragment extends Fragment {
 				ContentValues vals = new ContentValues();
 				vals.put("value", calciumVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
-				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
-				SQLiteDatabase db = dbHelper.getWritableDatabase();
+				SQLiteDatabase db = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				db.insert("calcium", "", vals);
 				
 				calciumEditText.setText("");

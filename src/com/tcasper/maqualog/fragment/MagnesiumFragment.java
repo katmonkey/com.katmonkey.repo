@@ -32,6 +32,14 @@ public class MagnesiumFragment extends Fragment {
 	EditText magnesiumEditText;
 	MaquaLogOpenHelper dbHelper;
 	InputMethodManager imm = null;
+	
+	public static MagnesiumFragment newInstance(int index) {
+		MagnesiumFragment af = new MagnesiumFragment();
+		Bundle args = new Bundle();
+		args.putInt(ARG_SECTION_NUMBER, index);
+		af.setArguments(args);
+		return af;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,8 +60,7 @@ public class MagnesiumFragment extends Fragment {
 				ContentValues vals = new ContentValues();
 				vals.put("value", magnesiumVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
-				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
-				SQLiteDatabase db = dbHelper.getWritableDatabase();
+				SQLiteDatabase db = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				db.insert("magnesium", "", vals);
 				
 				magnesiumEditText.setText("");

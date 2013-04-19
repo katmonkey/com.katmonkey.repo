@@ -32,6 +32,14 @@ public class AlkilinityFragment extends Fragment {
 	EditText alkilinityEditText;
 	MaquaLogOpenHelper dbHelper;
 	InputMethodManager imm = null;
+	
+	public static AlkilinityFragment newInstance(int index) {
+		AlkilinityFragment af = new AlkilinityFragment();
+		Bundle args = new Bundle();
+		args.putInt(ARG_SECTION_NUMBER, index);
+		af.setArguments(args);
+		return af;
+	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,8 +60,7 @@ public class AlkilinityFragment extends Fragment {
 				ContentValues vals = new ContentValues();
 				vals.put("value", alkilinityVal);
 				vals.put("date", sdf.format(Calendar.getInstance().getTime()));
-				dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
-				SQLiteDatabase db = dbHelper.getWritableDatabase();
+				SQLiteDatabase db = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 				db.insert("alkilinity", "", vals);
 				
 				alkilinityEditText.setText("");

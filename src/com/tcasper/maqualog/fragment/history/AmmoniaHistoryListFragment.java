@@ -18,8 +18,7 @@ public class AmmoniaHistoryListFragment extends ListFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		//View ammoniaHistoryListView = inflater.inflate(R.layout.ammonia_history_list_fragment, container, false);
-		MaquaLogOpenHelper dbHelper = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
+		SQLiteDatabase db = MaquaLogOpenHelper.getInstance(getActivity().getApplicationContext());
 		String[] columns = {"date", "value"};
 		int[] toColumns = {R.id.ammoniaHistoryDate, R.id.ammoniaHistoryValue};
 		Cursor cursor = db.query("ammonia", columns, "", null, "", "", "date asc", "");
@@ -28,6 +27,8 @@ public class AmmoniaHistoryListFragment extends ListFragment {
 		setListAdapter(adapter);
 		return super.onCreateView(inflater, container, savedInstanceState);
 	}
+	
+	
 	
 	
 

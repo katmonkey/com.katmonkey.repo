@@ -31,11 +31,11 @@ public class MaquaLogOpenHelper extends SQLiteOpenHelper {
 		
 	}
 	
-	public static MaquaLogOpenHelper getInstance(Context context) {
+	public static SQLiteDatabase getInstance(Context context) {
 		if(dbHelperInstance == null) {
 			dbHelperInstance = new MaquaLogOpenHelper(context.getApplicationContext());
 		}
-		return dbHelperInstance;
+		return dbHelperInstance.getWritableDatabase();
 	}
 
 	@Override

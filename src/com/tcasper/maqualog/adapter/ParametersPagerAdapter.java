@@ -26,60 +26,24 @@ public class ParametersPagerAdapter extends FragmentPagerAdapter {
     	Bundle args;
         switch (i) {
             case 0:
-            	fragment = new AmmoniaFragment();
-                args = new Bundle();
-                args.putInt(AmmoniaFragment.ARG_SECTION_NUMBER, i + 1);
-                fragment.setArguments(args);
-                return fragment;
+            	return AmmoniaFragment.newInstance(i + 1);
             case 1:
-                fragment = new NitriteFragment();
-                args = new Bundle();
-                args.putInt(NitriteFragment.ARG_SECTION_NUMBER, i + 1);
-                fragment.setArguments(args);
-                return fragment;
+                return NitriteFragment.newInstance(i + 1);
             case 2:
-                fragment = new NitrateFragment();
-                args = new Bundle();
-                args.putInt(NitrateFragment.ARG_SECTION_NUMBER, i + 1);
-                fragment.setArguments(args);
-                return fragment;
+                return NitrateFragment.newInstance(i + 1);
             case 3:
-            	fragment = new PhosphateFragment();
-                args = new Bundle();
-                args.putInt(PhosphateFragment.ARG_SECTION_NUMBER, i + 1);
-                fragment.setArguments(args);
-                return fragment;
+            	return PhosphateFragment.newInstance(i + 1);
             case 4:
-            	fragment = new AlkilinityFragment();
-                args = new Bundle();
-                args.putInt(AlkilinityFragment.ARG_SECTION_NUMBER, i + 1);
-                fragment.setArguments(args);
-                return fragment;
+            	return AlkilinityFragment.newInstance(i + 1);
             case 5:
-            	fragment = new CalciumFragment();
-                args = new Bundle();
-                args.putInt(CalciumFragment.ARG_SECTION_NUMBER, i + 1);
-                fragment.setArguments(args);
-                return fragment;
+            	return CalciumFragment.newInstance(i + 1);
             case 6:
-            	fragment = new MagnesiumFragment();
-                args = new Bundle();
-                args.putInt(MagnesiumFragment.ARG_SECTION_NUMBER, i + 1);
-                fragment.setArguments(args);
-                return fragment;
+            	return MagnesiumFragment.newInstance(i + 1);
             case 7:
-            	fragment = new IodineFragment();
-                args = new Bundle();
-                args.putInt(IodineFragment.ARG_SECTION_NUMBER, i + 1);
-                fragment.setArguments(args);
-                return fragment;
+            	return IodineFragment.newInstance(i + 1);
             default:
                 // The other sections of the app are dummy placeholders.
-                fragment = new NitriteFragment();
-                args = new Bundle();
-                args.putInt(NitrateFragment.ARG_SECTION_NUMBER, i + 1);
-                fragment.setArguments(args);
-                return fragment;
+                return new Fragment();
         }
     }
 

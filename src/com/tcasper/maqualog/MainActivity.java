@@ -17,12 +17,13 @@ import android.widget.EditText;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	
+	private static final String TAG = "MainActivity";
 	private ParametersPagerAdapter parametersPagerAdapter;
 	private ViewPager viewPager;
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    	Log.d("MainActivity", "Entering onCreate!");
+    	Log.d(TAG, "Entered onCreate!");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
@@ -38,6 +39,8 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
         	
         	@Override
         	public void onPageSelected(int position) {
+        		Log.d("ViewPager.SimpleOnPageChangeListener", "Entered onPageSelected(), " +
+        				"position parameter = " + position);
         		actionBar.setSelectedNavigationItem(position);
         	}
         });
@@ -50,21 +53,53 @@ public class MainActivity extends FragmentActivity implements ActionBar.TabListe
     
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // When the given tab is selected, switch to the corresponding page in the ViewPager.
+    	Log.d(TAG, "Entered onTabSelected()");
+    	// When the given tab is selected, switch to the corresponding page in the ViewPager.
         viewPager.setCurrentItem(tab.getPosition());
     }
     
     @Override
-    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
+    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    	Log.d(TAG, "Entered onTabUnselected()");
+    }
 
     @Override
-    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {}
+    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
+    	Log.d(TAG, "Entered onTabReselected()");
+    }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+    	Log.d(TAG, "Entered onCreateOptionsMenu()");
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
+    }
+    
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d(TAG, "Entered onStart()");
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "Entered onResume()");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "Entered onPause()");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "Entered onStop()");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "Entered onDestroy()");
     }
     
     private ArrayList<String> getTestNames() {
