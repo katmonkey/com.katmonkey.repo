@@ -9,7 +9,6 @@ import com.tcasper.maqualog.fragment.NitrateFragment;
 import com.tcasper.maqualog.fragment.NitriteFragment;
 import com.tcasper.maqualog.fragment.PhosphateFragment;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -22,8 +21,6 @@ public class ParametersPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int i) {
-    	Fragment fragment;
-    	Bundle args;
         switch (i) {
             case 0:
             	return AmmoniaFragment.newInstance(i + 1);

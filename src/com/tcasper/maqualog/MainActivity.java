@@ -12,8 +12,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.Button;
-import android.widget.EditText;
 
 public class MainActivity extends FragmentActivity implements ActionBar.TabListener {
 	
