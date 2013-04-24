@@ -69,6 +69,6 @@ public class PhosphateFragment extends Fragment {
 				db.close();
 			}
 		});
-		return (RelativeLayout) phosphateView;
+		return phosphateView;
 	}
 }

@@ -67,7 +67,7 @@ public class NitriteFragment extends Fragment {
 				db.close();
 			}
 		});
-		return (RelativeLayout)nitriteView;
+		return nitriteView;
 	}
 
 }

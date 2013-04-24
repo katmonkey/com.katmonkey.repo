@@ -69,7 +69,7 @@ public class CalciumFragment extends Fragment {
 				db.close();
 			}
 		});
-		return (RelativeLayout) calciumView;
+		return calciumView;
 	}
 }
 

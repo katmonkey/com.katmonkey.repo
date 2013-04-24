@@ -69,6 +69,6 @@ public class MagnesiumFragment extends Fragment {
 				db.close();
 			}
 		});
-		return (RelativeLayout) magnesiumView;
+		return magnesiumView;
 	}
 }

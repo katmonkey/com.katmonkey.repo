@@ -69,6 +69,6 @@ public class AlkilinityFragment extends Fragment {
 				db.close();
 			}
 		});
-		return (RelativeLayout) alkilinityView;
+		return alkilinityView;
 	}
 }

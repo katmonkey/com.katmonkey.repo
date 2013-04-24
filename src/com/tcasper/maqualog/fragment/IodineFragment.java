@@ -69,6 +69,6 @@ public class IodineFragment extends Fragment {
 				db.close();
 			}
 		});
-		return (RelativeLayout) iodineView;
+		return iodineView;
 	}
 }
